@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     //TODO swipe textView to previous or next operation with answer
     //TODO swipe to right to get extra operators:
 
-
     public void add(View view) {
         String temp = view.getTag().toString();
 
