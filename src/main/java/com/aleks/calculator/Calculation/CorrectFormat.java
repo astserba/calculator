@@ -3,7 +3,8 @@ package com.aleks.calculator.Calculation;
 /**
  * Created by Aleksandr on 19/09/2016.
  */
-public class CorrectFormatTemp {
+public class CorrectFormat {
+
     //check if data is in correct format:
     public static boolean check(String data, char current, boolean showLogs) {
 

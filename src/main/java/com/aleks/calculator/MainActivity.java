@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import com.aleks.calculator.Calculation.Calculation;
-import com.aleks.calculator.Calculation.CorrectFormatTemp;
+import com.aleks.calculator.Calculation.CorrectFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         String temp = view.getTag().toString();
 
         if (data.equals("")||data.equals("0.0")) {
-            if (CorrectFormatTemp.check(temp, temp.charAt(0), true)) {
+            if (CorrectFormat.check(temp, temp.charAt(0), true)) {
                 data = temp;
             }
         } else {
-            if (CorrectFormatTemp.check(data, temp.charAt(0), true)) {
+            if (CorrectFormat.check(data, temp.charAt(0), true)) {
                 data += temp;
             }
         }
