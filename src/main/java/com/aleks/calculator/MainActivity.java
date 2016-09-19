@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public void add(View view) {
         String temp = view.getTag().toString();
 
-        if (data.equals("")||data.equals("0.0")) {
+        if (data.equals("") || data.equals("0.0")) {
             if (CorrectFormat.check(temp, temp.charAt(0), true)) {
                 data = temp;
             }
@@ -36,21 +36,15 @@ public class MainActivity extends AppCompatActivity {
         seize();
     }
 
-    //decrease text size:
+    //decrease or increase text size:
     public void seize() {
-        if (data.length() > 20) {
-            input.setTextSize(25);
-        } else if (data.length() > 15) {
-            input.setTextSize(30);
-        }
-    }
-
-    //increase text size:
-    public void unseize() {
+        System.out.println("DATA: " + data.length());
         if (data.length() < 16) {
             input.setTextSize(40);
-        } else if (data.length() < 21) {
+        } else if (data.length() > 15 && data.length() < 21) {
             input.setTextSize(30);
+        } else if (data.length() > 20) {
+            input.setTextSize(25);
         }
     }
 
@@ -66,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             data = data.substring(0, data.length() - 1);
             input.setText(data);
-            unseize();
+            seize();
         }
     }
 
@@ -74,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
     public void clear(View view) {
         data = "0.0";
         input.setText(data);
-        unseize();
         bracketsDepth = 0;
+        seize();
     }
 
     //clever brackets:
@@ -110,17 +104,18 @@ public class MainActivity extends AppCompatActivity {
             input.setText(data);
             bracketsDepth++;
         }
+        seize();
     }
 
     //calculate data:
     public void calculate(View view) {
         Calculation calculation = new Calculation();
         System.out.println(bracketsDepth);
-        if (Character.isDigit(data.charAt(data.length() - 1))||data.charAt(data.length()-1)==')') {
+        if (Character.isDigit(data.charAt(data.length() - 1)) || data.charAt(data.length() - 1) == ')') {
             while ((bracketsDepth--) > 0) {
                 data += ')';
             }
-            String temp =data;
+            String temp = data;
             double result = Double.valueOf(calculation.perform(data, true));
             if (result > 0) {
                 data = String.valueOf(result);
